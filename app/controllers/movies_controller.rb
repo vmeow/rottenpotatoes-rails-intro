@@ -12,7 +12,6 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
-    @checks = {'G':1,'PG':1,'PG-13':1,'R':1}
     if params[:ratings_] != nil
       @checks = params[:ratings_]
       session[:ratings_] = params[:ratings_]
@@ -56,6 +55,8 @@ class MoviesController < ApplicationController
 
   def new
     # default: render 'new' template
+    session[:ratings] = {'G':1,'PG':1,'PG-13':1,'R':1}
+    @checks = {'G':1,'PG':1,'PG-13':1,'R':1}
   end
 
   def create
