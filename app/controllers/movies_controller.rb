@@ -14,16 +14,24 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     if params[:ratings_] != nil
       @checks = params[:ratings_]
+      session[:ratings_] = params[:ratings_]
     elsif session[:ratings_] != nil
       @checks = session[:ratings_]
     else
       @checks = {}
+      session[:ratings_] = {}
     end
+    
     if params[:sort] != nil
       sort = params[:sort]
-    else
+      session[:sort] = params[:sort]
+    elsif params[:sort] == nil and session[:sort] != nil
+      flash.keep
+      redirect_to movies_path(:sort => session[:sort], :ratings => session[:ratings])
+    elsif session[:sort] != nil
       sort = session[:sort]
     end
+    
     case sort
     when 'title'
       @title_header = 'hilite'
