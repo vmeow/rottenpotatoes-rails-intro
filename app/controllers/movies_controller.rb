@@ -12,6 +12,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+    @checks = Movie.all_ratings
     if params[:ratings_] != nil
       @checks = params[:ratings_]
       session[:ratings_] = params[:ratings_]
@@ -41,7 +42,7 @@ class MoviesController < ApplicationController
         @movies = Movie.order(:title)
       end
     when 'release_date'
-      @date_header = 'hilite'
+      @release_date_header = 'hilite'
       if @checks != nil
         @movies = Movie.where('rating': @checks.keys).order(:release_date)
       else
