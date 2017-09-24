@@ -11,7 +11,6 @@
 %table#movies
   %thead
     %tr
-      put #{params}
       %th{:class => @title_header}= link_to "Movie Title", movies_path(:sort => 'title', :ratings_ => @checks)
       %th Rating
       %th{:class => @date_header}= link_to "Release Date", movies_path(:sort => 'release_date', :ratings_ => @checks)

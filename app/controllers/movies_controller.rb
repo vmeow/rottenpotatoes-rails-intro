@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
         @movies = Movie.order(:title)
       end
     when 'release_date'
-      @release_date_header = 'hilite'
+      @date_header = 'hilite'
       if @checks != nil
         @movies = Movie.where('rating': @checks.keys).order(:release_date)
       else
