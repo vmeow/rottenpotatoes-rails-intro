@@ -18,9 +18,6 @@ class MoviesController < ApplicationController
       session[:ratings_] = params[:ratings_]
     elsif session[:ratings_] != nil
       @checks = session[:ratings_]
-    else
-      @checks = {}
-      session[:ratings_] = {}
     end
     
     if params[:sort] != nil
